@@ -4,7 +4,7 @@
 #define FPS 15
 #define CHANGE_STATE LOW
 #define PLAYER_VELOCITY 2
-#define BALL_VELOCITY 2
+#define BALL_VELOCITY 0
 #define OFFSET 2
 #define OFFSET_SCREEN 4
 #define GAME_OFFSET 40
@@ -70,7 +70,7 @@ void setup()  {
 
   left.wins = 0;
   right.wins = 0;
- 
+  drawStartScreen();
   initGame();
   game_state = RUN;
   Serial.begin(9600);
@@ -104,7 +104,7 @@ void loop() {
   updateGameState(delta);
   lastUpdate = millis();
   drawGame();
-  TV.delay(20);
+  TV.delay(12);
 }
 
 void updateGameState(int delta) {
@@ -117,6 +117,11 @@ void updateGameState(int delta) {
     	TV.print_str(30, 40, "LOOSER!");
     	initGame();
     }
+}
+
+void drawStartScreen() {
+	TV.print_str(30, 30, "PONG GAME!");
+	TV.delay(400);
 }
 
 void drawGame() {
@@ -184,12 +189,12 @@ void drawBorders() {
 
 }
 
-void drawBall(BALL ball) {
+void drawBall(BALL& ball) {
 	int radius = ball.diameter / 2;
 	TV.draw_circle(ball.x-radius, ball.y - radius, radius, '1','0','0');
 }
 
-void drawPlayer(PLAYER player) {
+void drawPlayer(PLAYER& player) {
 	TV.draw_line(player.x, player.y - player.size / 2, player.x, player.y + player.size / 2, '1');
 }
 
@@ -251,13 +256,15 @@ void updatePlayers(int delta) {
 	updatePlayer(left, leftDirection, delta);
 }
 
-void updatePlayer(PLAYER player, int direction, int delta) {
+void updatePlayer(PLAYER& player, int direction, int delta) {
 	int newY = (player.y + (direction * player_velocity * delta));
-	if(newY < display_info.starty) {
-		newY = display_info.starty;
-	} else if(newY > display_info.height) {
-		newY = display_info.height;
+	int playerSize = player.size/2;
+	if(newY-playerSize < display_info.starty) {
+		newY = display_info.starty+playerSize;
+	} else if(newY+playerSize > display_info.height) {
+		newY = display_info.height-playerSize;
 	}
+	player.y = newY;
 }
 
 int getPlayerDirection(int number) {
