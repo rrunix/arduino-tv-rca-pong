@@ -33,4 +33,4 @@ In this example we use an arduino uno, so depending on the arduino the wires may
 
 Note: if you are using another board you can see the guide https://code.google.com/p/arduino-tvout/
 
-[![Alt video](https://www.youtube.com/vi/Ct_DD2c47ZI/0.jpg)](https://www.youtube.com/watch?v=Ct_DD2c47ZI)
+[![See video on youtube](https://www.youtube.com/vi/Ct_DD2c47ZI/0.jpg)](https://www.youtube.com/watch?v=Ct_DD2c47ZI)
