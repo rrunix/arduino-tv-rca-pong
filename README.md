@@ -32,3 +32,5 @@ In this example we use an arduino uno, so depending on the arduino the wires may
 ![alt game on screen](https://raw.github.com/rrunix/arduine-tv-rca-pong/master/assembly/screen.jpg)
 
 Note: if you are using another board you can see the guide https://code.google.com/p/arduino-tvout/
+
+[![Alt video](https://www.youtube.com/vi/Ct_DD2c47ZI/0.jpg)](https://www.youtube.com/watch?v=Ct_DD2c47ZI)
